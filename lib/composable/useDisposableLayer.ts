@@ -13,7 +13,7 @@ export function useDisposableLayer(
   function removeLayer() {
     if (isLoaded.value) {
       if (ci) {
-        unregisterLayerEvents(map.value!, layerId, ci.vnode);
+        unregisterLayerEvents(layerId, ci.vnode);
       }
       const layer = map.value!.getLayer(layerId);
       if (layer) {

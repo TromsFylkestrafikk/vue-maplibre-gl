@@ -19,16 +19,16 @@ export type LayerPropTypeNaive<T extends LayersWithSource> = {
 };
 export type LayerPropTypeAdded<T extends LayersWithSource> = {
     layerId: {
-        type: PropType<T['id']>;
+        type: PropType<T["id"]>;
     };
     sourceLayer: {
-        type: PropType<T['source-layer']>;
+        type: PropType<T["source-layer"]>;
     };
     before: {
         type: PropType<string>;
     };
     source: {
-        type: PropType<T['source']>;
+        type: PropType<T["source"]>;
     };
 };
 export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> & LayerPropTypeAdded<T>;
@@ -96,4 +96,4 @@ export declare function layerProps<T extends LayersWithSource>(): {
 };
 export declare function genLayerOpts<T extends LayersWithSource>(id: string, type: string, props: LayerProps<T>, source: string | undefined): T;
 export declare function registerLayerEvents(map: Map, layerId: string, vn: VNode): void;
-export declare function unregisterLayerEvents(map: Map, layerId: string, vn: VNode): void;
+export declare function unregisterLayerEvents(layerId: string, vn: VNode): void;

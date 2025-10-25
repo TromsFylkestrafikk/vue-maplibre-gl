@@ -10,6 +10,7 @@ import type {
   Map,
   MapLayerEventType,
   BackgroundLayerSpecification,
+  Subscription,
 } from "maplibre-gl";
 import { type PropType, type VNode } from "vue";
 
@@ -144,6 +145,31 @@ export function genLayerOpts<T extends LayersWithSource>(
   return opts;
 }
 
+/** Internal map of current map layer event handlers. */
+const layerEventSubscriptions = {} as Record<string, Subscription>;
+
+function layerEventId(layerId: string, eventName: LayerEventType) {
+  return `${layerId}:${eventName}`;
+}
+
+/** Unregister any map event handlers for given layer/event combo. */
+function unsubscribeLayerEvent(layerId: string, eventName: LayerEventType) {
+  const subscriptionId = layerEventId(layerId, eventName);
+  if (subscriptionId in layerEventSubscriptions) {
+    layerEventSubscriptions[subscriptionId].unsubscribe();
+  }
+}
+
+/** Add layer event subscription. */
+function subscribeLayerEvent(
+  layerId: string,
+  eventName: LayerEventType,
+  subscription: Subscription,
+) {
+  unsubscribeLayerEvent(layerId, eventName);
+  layerEventSubscriptions[layerEventId(layerId, eventName)] = subscription;
+}
+
 export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
   if (!vn.props) {
     return;
@@ -151,23 +177,23 @@ export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
 
   for (const eventName of LAYER_EVENTS) {
     const evProp =
-      "on" + eventName.charAt(0).toUpperCase() + eventName.substr(1);
+      "on" + eventName.charAt(0).toUpperCase() + eventName.substring(1);
     if (vn.props[evProp]) {
-      map.on(eventName, layerId, vn.props[evProp]);
+      subscribeLayerEvent(
+        layerId,
+        eventName,
+        map.on(eventName, layerId, vn.props[evProp]),
+      );
     }
   }
 }
 
-export function unregisterLayerEvents(map: Map, layerId: string, vn: VNode) {
+export function unregisterLayerEvents(layerId: string, vn: VNode) {
   if (!vn.props) {
     return;
   }
 
   for (const eventName of LAYER_EVENTS) {
-    const evProp =
-      "on" + eventName.charAt(0).toUpperCase() + eventName.substr(1);
-    if (vn.props[evProp]) {
-      map.off(eventName, layerId, vn.props[evProp]);
-    }
+    unsubscribeLayerEvent(layerId, eventName);
   }
 }
