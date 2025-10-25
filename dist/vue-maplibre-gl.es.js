@@ -3,8 +3,8 @@
 * (c) 2025 François de Metz <francois@2metz.fr>
 * @license MIT
 */
-import { reactive as V, defineComponent as d, markRaw as W, getCurrentInstance as G, shallowRef as E, ref as B, provide as y, watch as s, onMounted as F, onBeforeUnmount as M, h as A, nextTick as Z, inject as m, createCommentVNode as S, Teleport as oe, warn as D, isRef as w } from "vue";
-import { LngLat as U, Map as ae, AttributionControl as re, FullscreenControl as ne, GeolocateControl as ie, NavigationControl as ue, ScaleControl as le, LogoControl as se, Marker as ce, Popup as de } from "maplibre-gl";
+import { reactive as V, defineComponent as d, markRaw as U, getCurrentInstance as G, shallowRef as T, ref as _, provide as y, watch as s, onMounted as F, onBeforeUnmount as M, h as A, nextTick as Z, inject as m, createCommentVNode as S, Teleport as oe, warn as D, isRef as w } from "vue";
+import { LngLat as W, Map as ae, AttributionControl as re, FullscreenControl as ne, GeolocateControl as ie, NavigationControl as ue, ScaleControl as le, LogoControl as se, Marker as ce, Popup as de } from "maplibre-gl";
 const me = Symbol("map"), h = me, P = Symbol("isLoaded"), ge = Symbol("isInitialized"), $ = ge, L = Symbol("componentId"), O = Symbol("sourceId"), C = Symbol(
   "sourceLayerRegistry"
 ), J = Symbol("marker"), fe = [
@@ -69,18 +69,18 @@ function ye(e, t, r, a) {
   });
 }
 function ve(e, t) {
-  const r = U.convert(e), a = U.convert(t);
+  const r = W.convert(e), a = W.convert(t);
   return r.lng === a.lng && r.lat === a.lat;
 }
 var k = /* @__PURE__ */ ((e) => (e.TOP_LEFT = "top-left", e.TOP_RIGHT = "top-right", e.BOTTOM_LEFT = "bottom-left", e.BOTTOM_RIGHT = "bottom-right", e))(k || {});
-const x = Object.values(k), T = /* @__PURE__ */ new Map(), K = Symbol("default");
+const x = Object.values(k), q = /* @__PURE__ */ new Map(), K = Symbol("default");
 function tt(e = K) {
-  let t = T.get(e);
-  return t || (t = V({ isLoaded: !1, isMounted: !1, language: null }), T.set(e, t)), t;
+  let t = q.get(e);
+  return t || (t = V({ isLoaded: !1, isMounted: !1, language: null }), q.set(e, t)), t;
 }
 function be(e, t, r = K) {
-  let a = T.get(r);
-  return a || (a = V({ isLoaded: !1, isMounted: !1, language: null }), T.set(r, a)), a.isLoaded = t.value?.loaded() || !1, a.isMounted = !1, a.component = e, a.map = t.value, a;
+  let a = q.get(r);
+  return a || (a = V({ isLoaded: !1, isMounted: !1, language: null }), q.set(r, a)), a.isLoaded = t.value?.loaded() || !1, a.isMounted = !1, a.component = e, a.map = t.value, a;
 }
 const pe = d({
   name: "MglMap",
@@ -457,7 +457,7 @@ const pe = d({
   ],
   slots: Object,
   setup(e, t) {
-    const r = W(G()), a = E(), o = E(), u = B(!1), c = B(!1), l = /* @__PURE__ */ new Map(), g = be(r, o, e.mapKey);
+    const r = U(G()), a = T(), o = T(), u = _(!1), c = _(!1), l = /* @__PURE__ */ new Map(), g = be(r, o, e.mapKey);
     y(h, o), y(P, c), y($, u), y(L, r.uid), y(O, ""), s(
       () => e.bearing,
       (i) => {
@@ -535,7 +535,7 @@ const pe = d({
       const i = { ...e, style: e.mapStyle, container: a.value };
       for (const v of Object.keys(i))
         i[v] === void 0 && delete i[v];
-      if (o.value = W(new ae(i)), g.map = o.value, u.value = !0, l.set(
+      if (o.value = U(new ae(i)), g.map = o.value, u.value = !0, l.set(
         "__load",
         () => (c.value = !0, g.isLoaded = !0)
       ), o.value.on("load", l.get("__load")), l.set(
@@ -597,8 +597,8 @@ function Se(e, t, r) {
     { immediate: !0 }
   );
 }
-function _(e, t) {
-  const r = m(h), a = m($), o = E();
+function B(e, t) {
+  const r = m(h), a = m($), o = T();
   return o.value = e(), Se(() => t.position, r, o.value), M(
     () => a.value && r.value?.removeControl(o.value)
   ), { control: o, map: r };
@@ -623,7 +623,7 @@ const Me = d({
     customAttribution: [String, Array]
   },
   setup(e) {
-    _(() => new re({
+    B(() => new re({
       compact: e.compact,
       customAttribution: e.customAttribution
     }), e);
@@ -671,7 +671,7 @@ const Le = d({
   },
   slots: Object,
   setup(e, { slots: t }) {
-    const r = B(!1), { control: a } = _(() => new he(r, e.class), e);
+    const r = _(!1), { control: a } = B(() => new he(r, e.class), e);
     return s(
       () => e.class,
       () => a.value.setClasses(e.class)
@@ -703,7 +703,7 @@ const Le = d({
     }
   },
   setup(e) {
-    const { control: t, map: r } = _(() => new ne({
+    const { control: t, map: r } = B(() => new ne({
       container: e.container || void 0
     }), e);
     function a() {
@@ -773,7 +773,7 @@ const Le = d({
     "outofmaxbounds"
   ],
   setup(e, t) {
-    const { control: r } = _(() => new ie({
+    const { control: r } = B(() => new ie({
       positionOptions: e.positionOptions,
       fitBoundsOptions: e.fitBoundsOptions,
       trackUserLocation: e.trackUserLocation,
@@ -817,7 +817,7 @@ const Le = d({
     visualizePitch: Boolean
   },
   setup(e) {
-    _(() => new ue({
+    B(() => new ue({
       showCompass: e.showCompass,
       showZoom: e.showZoom,
       visualizePitch: e.visualizePitch
@@ -852,7 +852,7 @@ const Ie = Object.values(Y), ze = d({
     }
   },
   setup(e) {
-    _(() => new le({
+    B(() => new le({
       maxWidth: e.maxWidth,
       unit: e.unit
     }), e);
@@ -860,7 +860,7 @@ const Ie = Object.values(Y), ze = d({
   render() {
     return null;
   }
-}), Be = d({
+}), _e = d({
   name: "MglLogoControl",
   props: {
     /**
@@ -878,14 +878,14 @@ const Ie = Object.values(Y), ze = d({
     }
   },
   setup(e) {
-    _(() => new se({
+    B(() => new se({
       compact: e.compact
     }), e);
   },
   render() {
     return null;
   }
-}), _e = d({
+}), Be = d({
   name: "MglMarker",
   emits: [
     /**
@@ -977,7 +977,7 @@ const Ie = Object.values(Y), ze = d({
     }
   },
   setup(e, { slots: t, emit: r }) {
-    const a = m(h), o = E(), u = B(), c = B(!1), l = /* @__PURE__ */ new Map();
+    const a = m(h), o = T(), u = _(), c = _(!1), l = /* @__PURE__ */ new Map();
     function g(n, f) {
       const R = (i) => {
         f && f(), r(n, i);
@@ -1151,7 +1151,7 @@ const Ie = Object.values(Y), ze = d({
     }
   },
   setup(e, { slots: t, emit: r, expose: a }) {
-    const o = m(h), u = m(J, void 0), c = B(), l = new de(e);
+    const o = m(h), u = m(J, void 0), c = _(), l = new de(e);
     u && u.value ? u.value.setPopup(l) : e.coordinates && o && l.setLngLat(e.coordinates).addTo(o.value), e.text && l.setText(e.text);
     function g(n) {
       const f = () => r(n);
@@ -1261,7 +1261,7 @@ class b {
   static getSourceRef(t, r) {
     const a = typeof r == "string", o = String(t) + (a ? r : "");
     let u = b.REFS.get(o);
-    return u || (u = B(a ? null : void 0), b.REFS.set(o, u)), u;
+    return u || (u = _(a ? null : void 0), b.REFS.set(o, u)), u;
   }
 }
 function j(e, t, r) {
@@ -1574,43 +1574,48 @@ function qe(e, t, r, a) {
     o[u] === void 0 && delete o[u];
   return o;
 }
-const q = {};
-function Q(e, t) {
-  return `${e}:${t}`;
+const E = {};
+function Q(e, t, r) {
+  return `${e._getMapId()}:${t}:${r}`;
 }
-function X(e, t) {
-  const r = Q(e, t);
-  r in q && q[r].unsubscribe();
+function X(e, t, r) {
+  const a = Q(e, t, r);
+  a in E && (console.log(`vue-maplibre-gl: Unsubscribing event ${a}`), E[a].unsubscribe(), delete E[a]);
 }
-function Fe(e, t, r) {
-  X(e, t), q[Q(e, t)] = r;
+function Fe(e, t, r, a) {
+  X(e, t, r);
+  const o = Q(e, t, r);
+  console.log(`vue-maplibre-gl: Subscribing event ${o}`), E[o] = a;
 }
 function Ze(e, t, r) {
   if (r.props)
     for (const a of p) {
       const o = "on" + a.charAt(0).toUpperCase() + a.substring(1);
       r.props[o] && Fe(
+        e,
         t,
         a,
         e.on(a, t, r.props[o])
       );
     }
 }
-function He(e, t) {
-  if (t.props)
-    for (const r of p)
-      X(e, r);
+function He(e, t, r) {
+  if (r.props) {
+    e._getMapId();
+    for (const a of p)
+      X(e, t, a);
+  }
 }
 function ee(e, t) {
   const r = m(h), a = m(P), o = m(C);
   function u() {
-    a.value && (t && He(e, t.vnode), r.value.getLayer(e) && r.value.removeLayer(e));
+    a.value && (t && He(r.value, e, t.vnode), r.value.getLayer(e) && r.value.removeLayer(e));
   }
   o.registerUnmountHandler(e, u), M(() => {
     o.unregisterUnmountHandler(e), u();
   });
 }
-const We = d({
+const Ue = d({
   name: "MglBackgroundLayer",
   props: {
     /**
@@ -1738,7 +1743,7 @@ function z(e, t) {
     { immediate: !0 }
   ), () => S(`${e} Layer`);
 }
-const Ue = d({
+const We = d({
   name: "MglCircleLayer",
   props: I(),
   emits: [...p],
@@ -1797,9 +1802,9 @@ const Ue = d({
 }), Qe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   MglAttributionControl: Me,
-  MglBackgroundLayer: We,
+  MglBackgroundLayer: Ue,
   MglCanvasSource: we,
-  MglCircleLayer: Ue,
+  MglCircleLayer: We,
   MglCustomControl: Le,
   MglFillExtrusionLayer: Ge,
   MglFillLayer: Ve,
@@ -1811,9 +1816,9 @@ const Ue = d({
   MglImage: je,
   MglImageSource: Ae,
   MglLineLayer: Je,
-  MglLogoControl: Be,
+  MglLogoControl: _e,
   MglMap: pe,
-  MglMarker: _e,
+  MglMarker: Be,
   MglNavigationControl: xe,
   MglPopup: Ne,
   MglRasterDemSource: ke,
@@ -1830,9 +1835,9 @@ const Ue = d({
 };
 export {
   Me as MglAttributionControl,
-  We as MglBackgroundLayer,
+  Ue as MglBackgroundLayer,
   we as MglCanvasSource,
-  Ue as MglCircleLayer,
+  We as MglCircleLayer,
   Le as MglCustomControl,
   Ge as MglFillExtrusionLayer,
   Ve as MglFillLayer,
@@ -1844,9 +1849,9 @@ export {
   je as MglImage,
   Ae as MglImageSource,
   Je as MglLineLayer,
-  Be as MglLogoControl,
+  _e as MglLogoControl,
   pe as MglMap,
-  _e as MglMarker,
+  Be as MglMarker,
   xe as MglNavigationControl,
   Ne as MglPopup,
   ke as MglRasterDemSource,
@@ -1867,7 +1872,7 @@ export {
   J as markerSymbol,
   O as sourceIdSymbol,
   C as sourceLayerRegistry,
-  _ as useControl,
+  B as useControl,
   ee as useDisposableLayer,
   tt as useMap,
   Se as usePositionWatcher,

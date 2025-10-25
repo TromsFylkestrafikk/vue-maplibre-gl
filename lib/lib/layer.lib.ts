@@ -148,26 +148,32 @@ export function genLayerOpts<T extends LayersWithSource>(
 /** Internal map of current map layer event handlers. */
 const layerEventSubscriptions = {} as Record<string, Subscription>;
 
-function layerEventId(layerId: string, eventName: LayerEventType) {
-  return `${layerId}:${eventName}`;
+function layerEventId(map: Map, layerId: string, eventName: LayerEventType) {
+  return `${map._getMapId()}:${layerId}:${eventName}`;
 }
 
 /** Unregister any map event handlers for given layer/event combo. */
-function unsubscribeLayerEvent(layerId: string, eventName: LayerEventType) {
-  const subscriptionId = layerEventId(layerId, eventName);
+function unsubscribeLayerEvent(
+  map: Map,
+  layerId: string,
+  eventName: LayerEventType,
+) {
+  const subscriptionId = layerEventId(map, layerId, eventName);
   if (subscriptionId in layerEventSubscriptions) {
     layerEventSubscriptions[subscriptionId].unsubscribe();
+    delete layerEventSubscriptions[subscriptionId];
   }
 }
 
 /** Add layer event subscription. */
 function subscribeLayerEvent(
+  map: Map,
   layerId: string,
   eventName: LayerEventType,
   subscription: Subscription,
 ) {
-  unsubscribeLayerEvent(layerId, eventName);
-  layerEventSubscriptions[layerEventId(layerId, eventName)] = subscription;
+  unsubscribeLayerEvent(map, layerId, eventName);
+  layerEventSubscriptions[layerEventId(map, layerId, eventName)] = subscription;
 }
 
 export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
@@ -180,6 +186,7 @@ export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
       "on" + eventName.charAt(0).toUpperCase() + eventName.substring(1);
     if (vn.props[evProp]) {
       subscribeLayerEvent(
+        map,
         layerId,
         eventName,
         map.on(eventName, layerId, vn.props[evProp]),
@@ -188,12 +195,13 @@ export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
   }
 }
 
-export function unregisterLayerEvents(layerId: string, vn: VNode) {
+export function unregisterLayerEvents(map: Map, layerId: string, vn: VNode) {
   if (!vn.props) {
     return;
   }
+  map._getMapId();
 
   for (const eventName of LAYER_EVENTS) {
-    unsubscribeLayerEvent(layerId, eventName);
+    unsubscribeLayerEvent(map, layerId, eventName);
   }
 }

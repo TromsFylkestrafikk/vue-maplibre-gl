@@ -96,4 +96,4 @@ export declare function layerProps<T extends LayersWithSource>(): {
 };
 export declare function genLayerOpts<T extends LayersWithSource>(id: string, type: string, props: LayerProps<T>, source: string | undefined): T;
 export declare function registerLayerEvents(map: Map, layerId: string, vn: VNode): void;
-export declare function unregisterLayerEvents(layerId: string, vn: VNode): void;
+export declare function unregisterLayerEvents(map: Map, layerId: string, vn: VNode): void;
