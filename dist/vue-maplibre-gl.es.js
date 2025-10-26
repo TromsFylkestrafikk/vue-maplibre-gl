@@ -3,8 +3,8 @@
 * (c) 2025 François de Metz <francois@2metz.fr>
 * @license MIT
 */
-import { reactive as V, defineComponent as d, markRaw as U, getCurrentInstance as G, shallowRef as T, ref as _, provide as y, watch as s, onMounted as F, onBeforeUnmount as M, h as A, nextTick as Z, inject as m, createCommentVNode as S, Teleport as oe, warn as D, isRef as w } from "vue";
-import { LngLat as W, Map as ae, AttributionControl as re, FullscreenControl as ne, GeolocateControl as ie, NavigationControl as ue, ScaleControl as le, LogoControl as se, Marker as ce, Popup as de } from "maplibre-gl";
+import { reactive as V, defineComponent as d, markRaw as W, getCurrentInstance as G, shallowRef as T, ref as _, provide as y, watch as s, onMounted as F, onBeforeUnmount as M, h as A, nextTick as Z, inject as m, createCommentVNode as S, Teleport as oe, warn as D, isRef as w } from "vue";
+import { LngLat as U, Map as ae, AttributionControl as re, FullscreenControl as ne, GeolocateControl as ie, NavigationControl as ue, ScaleControl as le, LogoControl as se, Marker as ce, Popup as de } from "maplibre-gl";
 const me = Symbol("map"), h = me, P = Symbol("isLoaded"), ge = Symbol("isInitialized"), $ = ge, L = Symbol("componentId"), O = Symbol("sourceId"), C = Symbol(
   "sourceLayerRegistry"
 ), J = Symbol("marker"), fe = [
@@ -69,7 +69,7 @@ function ye(e, t, r, a) {
   });
 }
 function ve(e, t) {
-  const r = W.convert(e), a = W.convert(t);
+  const r = U.convert(e), a = U.convert(t);
   return r.lng === a.lng && r.lat === a.lat;
 }
 var k = /* @__PURE__ */ ((e) => (e.TOP_LEFT = "top-left", e.TOP_RIGHT = "top-right", e.BOTTOM_LEFT = "bottom-left", e.BOTTOM_RIGHT = "bottom-right", e))(k || {});
@@ -457,7 +457,7 @@ const pe = d({
   ],
   slots: Object,
   setup(e, t) {
-    const r = U(G()), a = T(), o = T(), u = _(!1), c = _(!1), l = /* @__PURE__ */ new Map(), g = be(r, o, e.mapKey);
+    const r = W(G()), a = T(), o = T(), u = _(!1), c = _(!1), l = /* @__PURE__ */ new Map(), g = be(r, o, e.mapKey);
     y(h, o), y(P, c), y($, u), y(L, r.uid), y(O, ""), s(
       () => e.bearing,
       (i) => {
@@ -535,7 +535,7 @@ const pe = d({
       const i = { ...e, style: e.mapStyle, container: a.value };
       for (const v of Object.keys(i))
         i[v] === void 0 && delete i[v];
-      if (o.value = U(new ae(i)), g.map = o.value, u.value = !0, l.set(
+      if (o.value = W(new ae(i)), g.map = o.value, u.value = !0, l.set(
         "__load",
         () => (c.value = !0, g.isLoaded = !0)
       ), o.value.on("load", l.get("__load")), l.set(
@@ -1580,12 +1580,10 @@ function Q(e, t, r) {
 }
 function X(e, t, r) {
   const a = Q(e, t, r);
-  a in E && (console.log(`vue-maplibre-gl: Unsubscribing event ${a}`), E[a].unsubscribe(), delete E[a]);
+  a in E && (E[a].unsubscribe(), delete E[a]);
 }
 function Fe(e, t, r, a) {
-  X(e, t, r);
-  const o = Q(e, t, r);
-  console.log(`vue-maplibre-gl: Subscribing event ${o}`), E[o] = a;
+  X(e, t, r), E[Q(e, t, r)] = a;
 }
 function Ze(e, t, r) {
   if (r.props)
@@ -1600,11 +1598,9 @@ function Ze(e, t, r) {
     }
 }
 function He(e, t, r) {
-  if (r.props) {
-    e._getMapId();
+  if (r.props)
     for (const a of p)
       X(e, t, a);
-  }
 }
 function ee(e, t) {
   const r = m(h), a = m(P), o = m(C);
@@ -1615,7 +1611,7 @@ function ee(e, t) {
     o.unregisterUnmountHandler(e), u();
   });
 }
-const Ue = d({
+const We = d({
   name: "MglBackgroundLayer",
   props: {
     /**
@@ -1743,7 +1739,7 @@ function z(e, t) {
     { immediate: !0 }
   ), () => S(`${e} Layer`);
 }
-const We = d({
+const Ue = d({
   name: "MglCircleLayer",
   props: I(),
   emits: [...p],
@@ -1802,9 +1798,9 @@ const We = d({
 }), Qe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   MglAttributionControl: Me,
-  MglBackgroundLayer: Ue,
+  MglBackgroundLayer: We,
   MglCanvasSource: we,
-  MglCircleLayer: We,
+  MglCircleLayer: Ue,
   MglCustomControl: Le,
   MglFillExtrusionLayer: Ge,
   MglFillLayer: Ve,
@@ -1835,9 +1831,9 @@ const We = d({
 };
 export {
   Me as MglAttributionControl,
-  Ue as MglBackgroundLayer,
+  We as MglBackgroundLayer,
   we as MglCanvasSource,
-  We as MglCircleLayer,
+  Ue as MglCircleLayer,
   Le as MglCustomControl,
   Ge as MglFillExtrusionLayer,
   Ve as MglFillLayer,
