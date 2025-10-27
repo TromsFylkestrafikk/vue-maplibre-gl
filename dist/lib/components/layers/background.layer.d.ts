@@ -76,18 +76,18 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
      */
     paint: PropType<BackgroundLayerSpecification["paint"]>;
 }>> & Readonly<{
+    onTouchcancel?: ((...args: any[]) => any) | undefined;
+    onTouchend?: ((...args: any[]) => any) | undefined;
+    onTouchstart?: ((...args: any[]) => any) | undefined;
     onClick?: ((...args: any[]) => any) | undefined;
+    onContextmenu?: ((...args: any[]) => any) | undefined;
     onDblclick?: ((...args: any[]) => any) | undefined;
-    onMousedown?: ((...args: any[]) => any) | undefined;
-    onMouseup?: ((...args: any[]) => any) | undefined;
     onMousemove?: ((...args: any[]) => any) | undefined;
+    onMouseup?: ((...args: any[]) => any) | undefined;
+    onMousedown?: ((...args: any[]) => any) | undefined;
+    onMouseout?: ((...args: any[]) => any) | undefined;
+    onMouseover?: ((...args: any[]) => any) | undefined;
     onMouseenter?: ((...args: any[]) => any) | undefined;
     onMouseleave?: ((...args: any[]) => any) | undefined;
-    onMouseover?: ((...args: any[]) => any) | undefined;
-    onMouseout?: ((...args: any[]) => any) | undefined;
-    onContextmenu?: ((...args: any[]) => any) | undefined;
-    onTouchstart?: ((...args: any[]) => any) | undefined;
-    onTouchend?: ((...args: any[]) => any) | undefined;
-    onTouchcancel?: ((...args: any[]) => any) | undefined;
 }>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;

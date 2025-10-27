@@ -312,7 +312,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     [key: string]: any;
 }> | import('vue').VNode<import('vue').RendererNode, import('vue').RendererElement, {
     [key: string]: any;
-}>[] | undefined)[], {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, ("map:click" | "map:dblclick" | "map:mousedown" | "map:mouseup" | "map:mousemove" | "map:mouseover" | "map:mouseout" | "map:contextmenu" | "map:touchstart" | "map:touchend" | "map:touchcancel" | "map:zoom" | "map:error" | "map:load" | "map:idle" | "map:remove" | "map:render" | "map:resize" | "map:webglcontextlost" | "map:webglcontextrestored" | "map:dataloading" | "map:data" | "map:tiledataloading" | "map:sourcedataloading" | "map:styledataloading" | "map:sourcedata" | "map:styledata" | "map:styleimagemissing" | "map:dataabort" | "map:sourcedataabort" | "map:boxzoomcancel" | "map:boxzoomstart" | "map:boxzoomend" | "map:touchmove" | "map:movestart" | "map:move" | "map:moveend" | "map:zoomstart" | "map:zoomend" | "map:rotatestart" | "map:rotate" | "map:rotateend" | "map:dragstart" | "map:drag" | "map:dragend" | "map:pitchstart" | "map:pitch" | "map:pitchend" | "map:wheel" | "map:terrain" | "map:cooperativegestureprevented" | "map:projectiontransition" | "update:center" | "update:zoom" | "update:pitch" | "update:bearing")[], "map:click" | "map:dblclick" | "map:mousedown" | "map:mouseup" | "map:mousemove" | "map:mouseover" | "map:mouseout" | "map:contextmenu" | "map:touchstart" | "map:touchend" | "map:touchcancel" | "map:zoom" | "map:error" | "map:load" | "map:idle" | "map:remove" | "map:render" | "map:resize" | "map:webglcontextlost" | "map:webglcontextrestored" | "map:dataloading" | "map:data" | "map:tiledataloading" | "map:sourcedataloading" | "map:styledataloading" | "map:sourcedata" | "map:styledata" | "map:styleimagemissing" | "map:dataabort" | "map:sourcedataabort" | "map:boxzoomcancel" | "map:boxzoomstart" | "map:boxzoomend" | "map:touchmove" | "map:movestart" | "map:move" | "map:moveend" | "map:zoomstart" | "map:zoomend" | "map:rotatestart" | "map:rotate" | "map:rotateend" | "map:dragstart" | "map:drag" | "map:dragend" | "map:pitchstart" | "map:pitch" | "map:pitchend" | "map:wheel" | "map:terrain" | "map:cooperativegestureprevented" | "map:projectiontransition" | "update:center" | "update:zoom" | "update:pitch" | "update:bearing", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+}>[] | undefined)[], {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, ("map:error" | "map:load" | "map:idle" | "map:remove" | "map:render" | "map:resize" | "map:webglcontextlost" | "map:webglcontextrestored" | "map:dataloading" | "map:data" | "map:tiledataloading" | "map:sourcedataloading" | "map:styledataloading" | "map:sourcedata" | "map:styledata" | "map:styleimagemissing" | "map:dataabort" | "map:sourcedataabort" | "map:boxzoomcancel" | "map:boxzoomstart" | "map:boxzoomend" | "map:touchcancel" | "map:touchmove" | "map:touchend" | "map:touchstart" | "map:click" | "map:contextmenu" | "map:dblclick" | "map:mousemove" | "map:mouseup" | "map:mousedown" | "map:mouseout" | "map:mouseover" | "map:movestart" | "map:move" | "map:moveend" | "map:zoomstart" | "map:zoom" | "map:zoomend" | "map:rotatestart" | "map:rotate" | "map:rotateend" | "map:dragstart" | "map:drag" | "map:dragend" | "map:pitchstart" | "map:pitch" | "map:pitchend" | "map:wheel" | "map:terrain" | "map:cooperativegestureprevented" | "map:projectiontransition" | "update:center" | "update:zoom" | "update:pitch" | "update:bearing")[], "map:error" | "map:load" | "map:idle" | "map:remove" | "map:render" | "map:resize" | "map:webglcontextlost" | "map:webglcontextrestored" | "map:dataloading" | "map:data" | "map:tiledataloading" | "map:sourcedataloading" | "map:styledataloading" | "map:sourcedata" | "map:styledata" | "map:styleimagemissing" | "map:dataabort" | "map:sourcedataabort" | "map:boxzoomcancel" | "map:boxzoomstart" | "map:boxzoomend" | "map:touchcancel" | "map:touchmove" | "map:touchend" | "map:touchstart" | "map:click" | "map:contextmenu" | "map:dblclick" | "map:mousemove" | "map:mouseup" | "map:mousedown" | "map:mouseout" | "map:mouseover" | "map:movestart" | "map:move" | "map:moveend" | "map:zoomstart" | "map:zoom" | "map:zoomend" | "map:rotatestart" | "map:rotate" | "map:rotateend" | "map:dragstart" | "map:drag" | "map:dragend" | "map:pitchstart" | "map:pitch" | "map:pitchend" | "map:wheel" | "map:terrain" | "map:cooperativegestureprevented" | "map:projectiontransition" | "update:center" | "update:zoom" | "update:pitch" | "update:bearing", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
     /**
      * Width of the map container
      */
@@ -615,18 +615,6 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         type: PropType<boolean>;
     };
 }>> & Readonly<{
-    "onMap:click"?: ((...args: any[]) => any) | undefined;
-    "onMap:dblclick"?: ((...args: any[]) => any) | undefined;
-    "onMap:mousedown"?: ((...args: any[]) => any) | undefined;
-    "onMap:mouseup"?: ((...args: any[]) => any) | undefined;
-    "onMap:mousemove"?: ((...args: any[]) => any) | undefined;
-    "onMap:mouseover"?: ((...args: any[]) => any) | undefined;
-    "onMap:mouseout"?: ((...args: any[]) => any) | undefined;
-    "onMap:contextmenu"?: ((...args: any[]) => any) | undefined;
-    "onMap:touchstart"?: ((...args: any[]) => any) | undefined;
-    "onMap:touchend"?: ((...args: any[]) => any) | undefined;
-    "onMap:touchcancel"?: ((...args: any[]) => any) | undefined;
-    "onMap:zoom"?: ((...args: any[]) => any) | undefined;
     "onMap:error"?: ((...args: any[]) => any) | undefined;
     "onMap:load"?: ((...args: any[]) => any) | undefined;
     "onMap:idle"?: ((...args: any[]) => any) | undefined;
@@ -648,11 +636,23 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     "onMap:boxzoomcancel"?: ((...args: any[]) => any) | undefined;
     "onMap:boxzoomstart"?: ((...args: any[]) => any) | undefined;
     "onMap:boxzoomend"?: ((...args: any[]) => any) | undefined;
+    "onMap:touchcancel"?: ((...args: any[]) => any) | undefined;
     "onMap:touchmove"?: ((...args: any[]) => any) | undefined;
+    "onMap:touchend"?: ((...args: any[]) => any) | undefined;
+    "onMap:touchstart"?: ((...args: any[]) => any) | undefined;
+    "onMap:click"?: ((...args: any[]) => any) | undefined;
+    "onMap:contextmenu"?: ((...args: any[]) => any) | undefined;
+    "onMap:dblclick"?: ((...args: any[]) => any) | undefined;
+    "onMap:mousemove"?: ((...args: any[]) => any) | undefined;
+    "onMap:mouseup"?: ((...args: any[]) => any) | undefined;
+    "onMap:mousedown"?: ((...args: any[]) => any) | undefined;
+    "onMap:mouseout"?: ((...args: any[]) => any) | undefined;
+    "onMap:mouseover"?: ((...args: any[]) => any) | undefined;
     "onMap:movestart"?: ((...args: any[]) => any) | undefined;
     "onMap:move"?: ((...args: any[]) => any) | undefined;
     "onMap:moveend"?: ((...args: any[]) => any) | undefined;
     "onMap:zoomstart"?: ((...args: any[]) => any) | undefined;
+    "onMap:zoom"?: ((...args: any[]) => any) | undefined;
     "onMap:zoomend"?: ((...args: any[]) => any) | undefined;
     "onMap:rotatestart"?: ((...args: any[]) => any) | undefined;
     "onMap:rotate"?: ((...args: any[]) => any) | undefined;
