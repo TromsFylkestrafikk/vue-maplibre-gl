@@ -605,13 +605,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@indoorequal/vue-maplibre-gl@workspace:., @indoorequal/vue-maplibre-gl@workspace:^":
+"@indoorequal/vue-maplibre-gl@workspace:.":
   version: 0.0.0-use.local
   resolution: "@indoorequal/vue-maplibre-gl@workspace:."
   dependencies:
     "@babel/types": "npm:^8.0.0"
     "@eslint/js": "npm:^10.0.0"
-    "@indoorequal/vue-maplibre-gl": "workspace:^"
     "@maplibre/maplibre-gl-inspect": "npm:^1.7.0"
     "@mdi/js": "npm:^7.4.47"
     "@types/geojson": "npm:^7946.0.14"
