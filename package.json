@@ -33,6 +33,8 @@
   ],
   "scripts": {
     "build": "vue-tsc --noEmit && vite build && vue-docgen-web-types --configFile web-types.config.cjs",
+    "build:base": "vite build",
+    "build:watch": "vite build --watch",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
